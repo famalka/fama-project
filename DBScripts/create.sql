@@ -47,6 +47,29 @@ VALUES (
 
 /*END of CPU Table*/
 ################################################################
+/*START of HDD Table
+--table to store HDD data */
+CREATE TABLE RAM (
+  id INT PRIMARY KEY,
+  brand VARCHAR(15),
+  manufacturer VARCHAR (15),
+  quality INT,
+  price DECIMAL(10,2),
+  sizeGB DECIMAL(10,2),
+  busSpeedGHZ INT, 	
+  type VARCHAR(10)
+);
 
+/*populate table with dummy data*/
+INSERT INTO RAM
+VALUES (
+  0, 'kingston', 'kingston',3, 2000.00,4,166,'DDR3'
+);
+
+/*END of CPU Table*/
+################################################################
 SELECT * FROM CPU;
+SELECT * FROM HDD;
+SELECT * FROM RAM;
+
 
