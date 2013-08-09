@@ -1,10 +1,16 @@
 package com.cybergen.specmatcher;
 
+import com.cybergen.specmatcher.HWComponents.HDD;
+import com.cybergen.specmatcher.dao.SpecMatcherDAO;
+import com.cybergen.specmatcher.enums.Quality;
+
 public class SpecMatcherService{
 	
-	public String test(){
+	public HDD[] test(int quality){
+		Quality qualitya=Quality.values()[quality];
 		
-		return "HelloWorld";				
+		SpecMatcherDAO.createDatabaseConnection();
+		return SpecMatcherDAO.getHDDbyQuality(qualitya);
 	}
 
 	
