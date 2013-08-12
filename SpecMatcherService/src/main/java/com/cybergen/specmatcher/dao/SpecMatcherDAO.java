@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cybergen.specmatcher.HWComponents.HDD;
+import com.cybergen.specmatcher.HWComponents.*;
 import com.cybergen.specmatcher.enums.HDDType;
 import com.cybergen.specmatcher.enums.Quality;
 
@@ -38,31 +38,6 @@ public class SpecMatcherDAO {
 		}
 	}
 
-	public static String getData() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String result = "";
-			PreparedStatement st = (PreparedStatement) dbConnection
-					.prepareStatement(SEARCH_QUERY_FOR_XPATHS);
-			st.setString(1, SERVICE_NAME);
-			ResultSet rs = st.executeQuery();
-			if (rs.next()) {
-				result = rs.getString("CorrProps");
-			}
-			dbConnection.close();
-			return result;
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-
-	}
-
 	public static HDD[] getHDDbyQuality(Quality pQuality) {
 		List<HDD> result = new ArrayList<HDD>();
 		try {
@@ -75,6 +50,28 @@ public class SpecMatcherDAO {
 				result.add(new HDD(rs));
 			}
 			return result.toArray(new HDD[result.size()]);
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("Class not found com.mysql.jdbc.Driver");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error Occured while executing SQL ");
+		}
+		return null;
+
+	}
+	public static CPU[] getCPUbyQuality(Quality pQuality) {
+		List<CPU> result = new ArrayList<CPU>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			PreparedStatement st = (PreparedStatement) dbConnection
+					.prepareStatement("SELECT * FROM cpu WHERE quality=?");
+			st.setString(1, Integer.toString(pQuality.ordinal()));
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				result.add(new CPU(rs));
+			}
+			return result.toArray(new CPU[result.size()]);
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("Class not found com.mysql.jdbc.Driver");
