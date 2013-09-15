@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cybergen.specmatcher.HWComponents.*;
+import com.cybergen.specmatcher.Utils.Utils;
 import com.cybergen.specmatcher.enums.HDDType;
 import com.cybergen.specmatcher.enums.Quality;
 
@@ -24,13 +25,9 @@ public class SpecMatcherDAO {
 
 	public static void createDatabaseConnection() {
 		try {
+			Utils utils=new Utils();
 			Class.forName("com.mysql.jdbc.Driver");
-			dbConnection = DriverManager.getConnection(DB_URL, DB_USER,
-					DB_PASSWORD);
-
-		} catch (SQLException e) {
-			System.out
-					.println("Error occured while creating the Databse connection");
+			dbConnection = utils.getDBConnection();//DriverManager.getConnection(DB_URL, DB_USER,DB_PASSWORD);
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

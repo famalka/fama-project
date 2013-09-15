@@ -2,5 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-jdbc/7.0.34/tomcat-jdbc-7.0.34.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>
